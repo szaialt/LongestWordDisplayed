@@ -1,0 +1,42 @@
+# Project: LongestWordDisplayed
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = LongestWordDisplayed_private.res
+OBJ  = main.o filereader.o filewriter.o utility.o $(RES)
+LINKOBJ  = main.o filereader.o filewriter.o utility.o $(RES)
+LIBS =  -L"C:/Dev-Cpp/lib" -mwindows  
+INCS =  -I"C:/Dev-Cpp/include" 
+CXXINCS =  -I"C:/Dev-Cpp/lib/gcc/mingw32/3.4.2/include"  -I"C:/Dev-Cpp/include/c++/3.4.2/backward"  -I"C:/Dev-Cpp/include/c++/3.4.2/mingw32"  -I"C:/Dev-Cpp/include/c++/3.4.2"  -I"C:/Dev-Cpp/include" 
+BIN  = LongestWordDisplayed.exe
+CXXFLAGS = $(CXXINCS)  
+CFLAGS = $(INCS)  
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before LongestWordDisplayed.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o "LongestWordDisplayed.exe" $(LIBS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
+filereader.o: filereader.cpp
+	$(CPP) -c filereader.cpp -o filereader.o $(CXXFLAGS)
+
+filewriter.o: filewriter.cpp
+	$(CPP) -c filewriter.cpp -o filewriter.o $(CXXFLAGS)
+
+utility.o: utility.cpp
+	$(CPP) -c utility.cpp -o utility.o $(CXXFLAGS)
+
+LongestWordDisplayed_private.res: LongestWordDisplayed_private.rc findworddialog.rc offsetfiledialog.rc 
+	$(WINDRES) -i LongestWordDisplayed_private.rc --input-format=rc -o LongestWordDisplayed_private.res -O coff 
